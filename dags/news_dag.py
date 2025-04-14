@@ -15,7 +15,7 @@ with DAG(
     task_extract = PythonOperator(
         task_id="extract_news",
         python_callable=extract_news,
-        op_args=["{{ macros.ds_add(ds, -1) }}"], 
+        op_args=["{{ data_interval_start }}"], 
     )
 
     task_load = PythonOperator(
