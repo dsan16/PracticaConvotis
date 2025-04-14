@@ -1,4 +1,5 @@
 import requests
+import os
 import json
 import pandas as pd
 from datetime import datetime
@@ -9,7 +10,7 @@ def extract_news(date_extract):
 
     params = {
         "q": "nintendo", 
-        "from": date_extract.strftime("%Y-%m-%d"),
+        "from": datetime.strptime(date_extract, "%Y-%m-%d").strftime("%Y-%m-%d"),
         "sortBy": "publishedAt",
         "apiKey": API_KEY
     }
@@ -22,5 +23,11 @@ def extract_news(date_extract):
     
     articles = data.get("articles", [])
 
-    df = pd.DataFrame(articles)
-    df.to_csv(f"/tmp/news_data_{date_extract}.csv", index=False) 
+
+    output_path = os.path.join(os.path.dirname(__file__), "data")
+    os.makedirs(output_path, exist_ok=True)
+
+    file_path = os.path.join(output_path, "news_data.json")
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(articles, f, ensure_ascii=False, indent=2)
