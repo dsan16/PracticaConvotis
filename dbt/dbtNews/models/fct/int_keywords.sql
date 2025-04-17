@@ -27,7 +27,7 @@ filtered as (
     where keyword <> ''
       and keyword not in (
         'de','la','que','el','y','a','en','un','ser','se','no','haber',
-        'por','con','su','para','como','estar','tener','le','lo','lo','sí'
+        'por','con','su','para','como','estar','tener','le','lo','lo','sí', 'al'
       )
 )
 
