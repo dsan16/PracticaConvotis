@@ -10,7 +10,7 @@ def extract_news(date_extract):
     URL = "https://newsapi.org/v2/everything"
 
     params = {
-        "q": "nintendo", 
+        "q": "Murcia", 
         "from": pendulum.parse(date_extract).to_date_string(),
         "sortBy": "publishedAt",
         "apiKey": API_KEY
