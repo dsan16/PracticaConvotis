@@ -8,20 +8,20 @@ WITH tokenized as (
     select
         published_at::date as published_date,
         lower(f.value::string) as keyword
-    from source
+    from {{ ref('stg_news') }}
     , lateral flatten(
         input => split(
             regexp_replace(
                 description,
                 '[^A-Za-zÁÉÍÓÚáéíóúñÑ ]',
-                ''
+                ' '
             ),
-            ''
+            ' '
         )
     ) f
 ),
 
-WITH filtered as (
+filtered as (
     select *
     from tokenized
     where keyword <> ''
