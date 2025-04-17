@@ -1,0 +1,8 @@
+version: 1
+
+sources:
+  - name: newsapi_db
+    schema: bronze
+    tables:
+      - name: news
+        identifier: stg_news

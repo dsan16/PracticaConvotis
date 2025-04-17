@@ -1,7 +1,7 @@
-logs/
-plugins/
+/materials/logs/
+/materials/plugins/
 
-__pycache__/
+/materials/__pycache__/
 *.py[cod]
 
 .env

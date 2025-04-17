@@ -3,6 +3,7 @@ import os
 import json
 import pandas as pd
 from datetime import datetime
+import pendulum
 
 def extract_news(date_extract):
     API_KEY = "f378cca5de114febbcd676d4e0f398cf"
@@ -10,7 +11,7 @@ def extract_news(date_extract):
 
     params = {
         "q": "nintendo", 
-        "from": datetime.strptime(date_extract, "%Y-%m-%d").strftime("%Y-%m-%d"),
+        "from": pendulum.parse(date_extract).to_date_string(),
         "sortBy": "publishedAt",
         "apiKey": API_KEY
     }
