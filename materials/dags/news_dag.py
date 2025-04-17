@@ -1,6 +1,6 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-#from airflow_dbt.operators.dbt import DbtRunOperator
+from airflow.operators.bash import BashOperator
 import pendulum
 
 from ConvotisPractica.newsapi_extract import extract_news
@@ -24,9 +24,12 @@ with DAG(
         python_callable=load_to_snowflake
     )
 
-    """dbt_run = DbtRunOperator(
-        task_id='dbt_run',
-        project_dir='C:\\Users\\danis\\Documents\\ImagenesDocker\\dbt\\dbtNews'
-    )"""
+    dbt_run = BashOperator(
+    task_id='dbt_run',
+    bash_command=(
+        'cd /opt/airflow/dbt/dbtNews && '
+        'dbt run'
+    )
+)
 
-    task_extract >> task_load #>> dbt_run
+    task_extract >> task_load >> dbt_run
