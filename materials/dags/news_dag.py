@@ -27,7 +27,7 @@ with DAG(
     dbt_run = BashOperator(
     task_id='dbt_run',
     bash_command=(
-        'cd /opt/airflow/dbt/dbtNews && '
+        'cd /opt/airflow/dbtNews && '
         'dbt run'
     )
 )
