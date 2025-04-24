@@ -5,3 +5,7 @@
 *.py[cod]
 
 .env
+
+news_data.json
+
+profiles.yml

@@ -10,7 +10,7 @@ with DAG(
     dag_id="news_dag",
     start_date=pendulum.datetime(2025, 4, 1, tz="Europe/Madrid"),
     schedule_interval="@daily",
-    catchup=False
+    catchup=True
 ) as dag:
 
     task_extract = PythonOperator(
